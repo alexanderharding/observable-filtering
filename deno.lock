@@ -1,0 +1,70 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/assert@^1.0.16": "1.0.16",
+    "jsr:@std/internal@^1.0.12": "1.0.12",
+    "jsr:@xan/observable-utility@0.1": "0.1.0",
+    "jsr:@xan/observable@0.1": "0.1.0",
+    "jsr:@xan/observable@0.3": "0.3.0",
+    "jsr:@xan/observer@0.1": "0.1.0",
+    "jsr:@xan/observer@0.2": "0.2.0",
+    "jsr:@xan/pipe@0.1": "0.1.0",
+    "jsr:@xan/subject@0.2": "0.2.0"
+  },
+  "jsr": {
+    "@std/assert@1.0.16": {
+      "integrity": "6a7272ed1eaa77defe76e5ff63ca705d9c495077e2d5fd0126d2b53fc5bd6532",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/internal@1.0.12": {
+      "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
+    },
+    "@xan/observable@0.1.0": {
+      "integrity": "758ff7f80b7b800dc38b87758447da8defd1bd554bc88c0baf341daffb1429bb",
+      "dependencies": [
+        "jsr:@xan/observer@0.1"
+      ]
+    },
+    "@xan/observable@0.3.0": {
+      "integrity": "6dc574e8e2de020fe4cffe74d285bd815b400cb923b05bd442896cf4309ef903",
+      "dependencies": [
+        "jsr:@xan/observer@0.2"
+      ]
+    },
+    "@xan/observable-utility@0.1.0": {
+      "integrity": "58939a00dec2c87d4af02cd22293f79ce2ee65cfb96cb2b976c475c5b6f2730c",
+      "dependencies": [
+        "jsr:@xan/observable@0.1",
+        "jsr:@xan/observer@0.1"
+      ]
+    },
+    "@xan/observer@0.1.0": {
+      "integrity": "a05d35416102441584c182b94963a2d6d357c060e82173efc3181ca61108ebb9"
+    },
+    "@xan/observer@0.2.0": {
+      "integrity": "26ab968167b162726759ba3cc42b906ae2210dbabffb8d4b4d54967b239a5c3f"
+    },
+    "@xan/pipe@0.1.0": {
+      "integrity": "884638f8459b429abb9a1729b0219883365bcd8ac254d466b89845b13391705c"
+    },
+    "@xan/subject@0.2.0": {
+      "integrity": "b36c6bec5ef890d1c2af795f33e2408618b409d6034fa4efe639a44d6ed7a362",
+      "dependencies": [
+        "jsr:@xan/observable@0.3",
+        "jsr:@xan/observer@0.2"
+      ]
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@^1.0.16",
+      "jsr:@xan/observable-utility@0.1",
+      "jsr:@xan/observable@0.3",
+      "jsr:@xan/observer@0.2",
+      "jsr:@xan/pipe@0.1",
+      "jsr:@xan/subject@0.2"
+    ]
+  }
+}
