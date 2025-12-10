@@ -2,7 +2,6 @@ import { assertEquals, assertStrictEquals } from "@std/assert";
 import { pipe } from "@xan/pipe";
 import { drop } from "./drop.ts";
 import { Observer } from "@xan/observer";
-import { Observable } from "@xan/observable";
 import { empty, materialize, never, type ObserverNotification, of } from "@xan/observable-utility";
 
 Deno.test(

@@ -1,6 +1,5 @@
 import { assertEquals } from "@std/assert";
-import { Observable } from "@xan/observable";
-import { materialize, ObserverNotification, of, thrown } from "@xan/observable-utility";
+import { materialize, type ObserverNotification, of, thrown } from "@xan/observable-utility";
 import { pipe } from "@xan/pipe";
 import { distinctUntilChanged } from "./distinct-until-changed.ts";
 import { Observer } from "@xan/observer";

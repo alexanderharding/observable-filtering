@@ -2,7 +2,7 @@ import { pipe } from "@xan/pipe";
 import { filter } from "./filter.ts";
 import { Observer } from "@xan/observer";
 import { assertEquals } from "@std/assert";
-import { materialize, type ObserverNotification, of, thrown } from "@xan/observable-utility";
+import { materialize, type ObserverNotification, of } from "@xan/observable-utility";
 import { Observable } from "@xan/observable";
 
 Deno.test(
