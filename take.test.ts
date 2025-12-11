@@ -1,0 +1,99 @@
+import { assertEquals, assertStrictEquals } from "@std/assert";
+import { empty, materialize, never, type ObserverNotification, of } from "@xan/observable-utility";
+import { pipe } from "@xan/pipe";
+import { take } from "./take.ts";
+import { Observable } from "@xan/observable";
+import { Observer } from "@xan/observer";
+import { Subject } from "@xan/subject";
+
+Deno.test(
+  "take should return an empty observable if the count is equal to 0",
+  () => {
+    // Arrange
+    const source = never;
+
+    // Act
+    const result = pipe(source, take(0));
+
+    // Assert
+    assertStrictEquals(result, empty);
+  },
+);
+
+Deno.test(
+  "take should return an empty observable if the count is less than 0",
+  () => {
+    // Arrange
+    const source = never;
+
+    // Act
+    const result = pipe(source, take(-1));
+
+    // Assert
+    assertStrictEquals(result, empty);
+  },
+);
+
+Deno.test(
+  "take should return the source observable if the count is Infinity",
+  () => {
+    // Arrange
+    const source = new Observable(() => {});
+
+    // Act
+    const result = pipe(source, take(Infinity));
+
+    // Assert
+    assertStrictEquals(result, source);
+  },
+);
+
+Deno.test("take should return empty observable if the count is NaN", () => {
+  // Arrange
+  const source = new Observable(() => {});
+
+  // Act
+  const result = pipe(source, take(NaN));
+
+  // Assert
+  assertStrictEquals(result, empty);
+});
+
+Deno.test(
+  "take should terminate the source observable at the given count if the count is a positive finite number",
+  () => {
+    // Arrange
+    const notifications: Array<ObserverNotification<number>> = [];
+    const source = of(1, 2, 3);
+    const materialized = pipe(source, take(2), materialize());
+
+    // Act
+    materialized.subscribe(
+      new Observer((notification) => notifications.push(notification)),
+    );
+
+    // Assert
+    assertEquals(notifications, [["N", 1], ["N", 2], ["R"]]);
+  },
+);
+
+Deno.test("take should handle reentrant subscribers", () => {
+  // Arrange
+  const notifications: Array<ObserverNotification<number>> = [];
+  const source = new Subject<number>();
+  const materialized = pipe(source, take(2), materialize());
+
+  // Act
+  materialized.subscribe(
+    new Observer((notification) => {
+      notifications.push(notification);
+      if (notification[0] === "N" && notification[1] === 2) source.next(3);
+    }),
+  );
+  source.next(1);
+  source.next(2);
+  source.return();
+
+  // Assert
+  assertEquals(notifications, [["N", 1], ["N", 2], ["R"]]);
+});
